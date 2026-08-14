@@ -4,13 +4,4 @@
   "singleQuote": true,
   "sortPackageJson": false,
   "ignorePatterns": [],
-  "overrides": [
-    {
-      "files": ["src/**/*.html", "*.html"],
-      "options": {
-        "objectWrap":"collapse"
-      }
-    }
-  ]
-
 }
