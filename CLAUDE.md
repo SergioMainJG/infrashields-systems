@@ -63,3 +63,8 @@ Prettier (`.prettierrc`, with the `angular` parser for `*.html`) — both config
   `noImplicitOverride`, `noPropertyAccessFromIndexSignature`, `noImplicitReturns`,
   `noFallthroughCasesInSwitch`, plus Angular's `strictInjectionParameters` and
   `strictInputAccessModifiers`.
+
+
+## Template
+
+![alt text](image.png)
