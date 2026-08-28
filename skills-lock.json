@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "skills": {
+    "angular-developer": {
+      "source": "angular/skills",
+      "sourceType": "github",
+      "skillPath": "angular-developer/SKILL.md",
+      "computedHash": "6e210de5ff3122ed27bd17def7afcfa9ce64fd7530c136e929d2f3c8d544d957"
+    },
+    "daisyui": {
+      "source": "saadeghi/daisyui",
+      "sourceType": "github",
+      "skillPath": "skills/daisyui/SKILL.md",
+      "computedHash": "271523943a0b06c22b8bd2ba5b85b16acc8e9a28de736295c20869e19defefda"
+    },
+    "spec": {
+      "source": "Klerith/fernando-skills",
+      "sourceType": "github",
+      "skillPath": "skills/engineering/spec/SKILL.md",
+      "computedHash": "81cfa08325e8104fbf5868ec47e3f3d8aec5f18927f58178fbceeecdc0036e55"
+    },
+    "spec-impl": {
+      "source": "Klerith/fernando-skills",
+      "sourceType": "github",
+      "skillPath": "skills/engineering/spec-impl/SKILL.md",
+      "computedHash": "18493640ac83a2f3baab75366eba5eab6acabdd893cc63e533a10629e4844ed9"
+    }
+  }
+}

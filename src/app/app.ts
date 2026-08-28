@@ -1,11 +1,10 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { ImageCarousel } from '../image-carousel/image-carousel';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [ImageCarousel],
   templateUrl: './app.html',
-
 })
 export class App {
   protected readonly title = signal('infrashield-systems');
