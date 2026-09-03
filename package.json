@@ -11,12 +11,19 @@
   "private": true,
   "engineStrict": true,
   "engines": {
-    "node": ">= 24.19.0"
+    "node": ">= 24.19.0",
+    "nub": ">=0.7.5"
   },
   "devEngines": {
     "runtime": {
       "name": "node",
-      "version": "24.19.0"
+      "version": "24.19.0",
+      "onFail": "download"
+    },
+    "packageManager":{
+      "name": "pnpm",
+      "version": "11.24.0",
+      "onFail": "download"
     }
   },
   "dependencies": {

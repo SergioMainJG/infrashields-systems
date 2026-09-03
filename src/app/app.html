@@ -1,143 +1,67 @@
-<div class="min-h-screen bg-base-100 text-base-content text-[15px]">
+<div class="flex min-h-screen flex-col overflow-x-hidden bg-base-100 text-base-content text-[15px]">
 
   <!-- Barra superior -->
-  <header class="navbar flex-wrap gap-4 border-b border-base-300 px-6 py-3">
-
-    <!-- SVG Logo / Brand -->
-    <div class="text-[32px] font-bold italic tracking-tight text-primary">
-      abasteo<span class="not-italic text-[22px] text-[#9aa7b4]">:</span>
-    </div>
-
-    <!-- Contáctenos -->
-    <div class="dropdown">
-      <div tabindex="0" role="button"
-           class="btn btn-outline border-base-300 bg-base-100 text-[#0a3d6b] font-normal min-w-45 justify-between hover:bg-base-200 hover:border-base-300">
-        Contáctenos
-        <svg class="size-4 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-          <path d="M6 9l6 6 6-6"/>
-        </svg>
+  <header class="border-b border-base-300">
+    <div class="navbar mx-auto max-w-350 flex-wrap gap-4 px-4 sm:px-6">
+      <div class="navbar-start">
+        <span class="text-[28px] font-bold italic tracking-tight text-primary">
+          Infrashield Systems
+        </span>
       </div>
-      <ul tabindex="0" class="dropdown-content menu z-30 mt-1 w-56 rounded-box bg-base-100 p-2 shadow">
-        <li><a>Ventas</a></li>
-        <li><a>Soporte técnico</a></li>
-        <li><a>Sucursales</a></li>
-      </ul>
     </div>
-
-    <!-- Buscador -->
-    <label class="input flex-1 min-w-60 bg-[#eef2f7] border-base-300">
-      <input type="search" class="grow" placeholder="¿Qué necesita su empresa?">
-      <button class="text-primary" aria-label="Buscar">
-        <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/>
-        </svg>
-      </button>
-    </label>
-
-    <!-- Acceso a cuenta -->
-    <button class="btn btn-outline border-base-300 bg-base-100 font-normal text-[#0a3d6b] hover:bg-base-200 hover:border-base-300">
-      <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.5-6 8-6s8 2 8 6"/>
-      </svg>
-      Acceso a cuenta
-    </button>
-
-    <!-- Carrito -->
-    <button class="btn h-auto btn-outline border-base-300 bg-base-100 py-2 font-normal hover:bg-base-200 hover:border-base-300">
-      <span class="indicator">
-        <span class="indicator-item badge badge-xs badge-warning">0</span>
-        <svg class="size-6 text-[#0a3d6b]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/>
-          <path d="M2 3h3l2.5 12h11L21 7H6"/>
-        </svg>
-      </span>
-      <span class="text-right leading-tight">
-        <span class="block text-lg font-semibold text-[#0a3d6b]">$0.00</span>
-        <span class="block text-xs text-[#8a96a3]">Incl. IVA</span>
-      </span>
-    </button>
   </header>
 
   <!-- Navegación -->
-  <nav class="border-b border-base-300">
-    <ul class="menu menu-horizontal flex-wrap justify-center gap-8 py-3 text-[#0a3d6b]">
-      <li>
-        <a>
-          <svg class="size-5 text-secondary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <rect x="2" y="4" width="20" height="16" rx="2"/><line x1="7" y1="9" x2="17" y2="9"/><line x1="7" y1="14" x2="13" y2="14"/>
-          </svg>
-          Configuradores
-          <svg class="size-3 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M6 9l6 6 6-6"/></svg>
-        </a>
-      </li>
-      <li>
-        <a>
-          <svg class="size-5 text-secondary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M4 20l6-6"/><path d="M14 4l6 6-4 4-6-6z"/>
-          </svg>
-          Servicios
-          <svg class="size-3 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M6 9l6 6 6-6"/></svg>
-        </a>
-      </li>
-      <li>
-        <a>
-          <svg class="size-5 text-secondary" viewBox="0 0 24 24" fill="currentColor">
-            <rect x="3" y="3" width="8" height="8"/><rect x="13" y="3" width="8" height="8"/>
-            <rect x="3" y="13" width="8" height="8"/><rect x="13" y="13" width="8" height="8"/>
-          </svg>
-          Licencias en la nube
-          <svg class="size-3 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M6 9l6 6 6-6"/></svg>
-        </a>
-      </li>
-      <li>
-        <a>
-          <svg class="size-6 text-secondary" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M6 18a4 4 0 010-8 6 6 0 0111.5-1.5A3.5 3.5 0 0119 18z"/>
-          </svg>
-          Soluciones Cloud
-          <svg class="size-3 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M6 9l6 6 6-6"/></svg>
-        </a>
-      </li>
-      <li>
-        <a>
-          <svg class="size-5 text-secondary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="5" cy="12" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="19" cy="18" r="2"/>
-            <path d="M7 12l10-6M7 12l10 6"/>
-          </svg>
-          E-Procurement
-        </a>
-      </li>
-    </ul>
+  <nav class="border-b border-base-300" aria-label="Navegación principal">
+    <div class="mx-auto max-w-[1400px] px-4 sm:px-6">
+      <ul class="menu menu-horizontal w-full flex-wrap justify-between gap-2 py-3 text-[#0a3d6b]">
+        <li>
+          <a
+            routerLink="/"
+            routerLinkActive="menu-active"
+            ariaCurrentWhenActive="page"
+            [routerLinkActiveOptions]="{ exact: true }">
+            Inicio
+          </a>
+        </li>
+        <li>
+          <a
+            routerLink="/quienes-somos"
+            routerLinkActive="menu-active"
+            ariaCurrentWhenActive="page">
+            Quienes somos
+          </a>
+        </li>
+        <li>
+          <a
+            routerLink="/nuestros-productos"
+            routerLinkActive="menu-active"
+            ariaCurrentWhenActive="page">
+            Nuestros productos
+          </a>
+        </li>
+        <li>
+          <a routerLink="/servicios" routerLinkActive="menu-active" ariaCurrentWhenActive="page">
+            Servicios
+          </a>
+        </li>
+        <li>
+          <a
+            routerLink="/contactanos"
+            routerLinkActive="menu-active"
+            ariaCurrentWhenActive="page">
+            Contáctanos
+          </a>
+        </li>
+      </ul>
+    </div>
   </nav>
 
   <!-- Contenido Principal -->
-  <main class="mx-auto flex max-w-[1400px] flex-col items-start gap-6 bg-base-200/50 px-4 sm:px-6 py-6 lg:flex-row">
-
-    <!-- Categorías Sidebar -->
-    <aside class="w-full lg:w-[230px] lg:shrink-0">
-      <ul class="menu w-full gap-0 rounded-box border border-base-300 bg-base-100 p-0 text-sm text-[#0a3d6b] shadow-sm
-                 [&_li:not(:last-child)]:border-b [&_li:not(:last-child)]:border-base-300">
-        <li><a class="hover:bg-base-200 py-2.5">Desktop y Portátiles</a></li>
-        <li><a class="hover:bg-base-200 py-2.5">Cómputo y Hardware</a></li>
-        <li><a class="hover:bg-base-200 py-2.5">Impresión y Consumibles</a></li>
-        <li><a class="hover:bg-base-200 py-2.5">Electrónica de Consumo</a></li>
-        <li><a class="hover:bg-base-200 py-2.5">Redes & Telecom</a></li>
-        <li><a class="hover:bg-base-200 py-2.5">Energía & UPS</a></li>
-        <li><a class="hover:bg-base-200 py-2.5">Almacenamiento de Datos</a></li>
-        <li><a class="hover:bg-base-200 py-2.5">Apple Enterprise</a></li>
-        <li><a class="hover:bg-base-200 py-2.5">Punto de Venta (POS)</a></li>
-        <li><a class="hover:bg-base-200 py-2.5">Celulares y Telefonía</a></li>
-        <li><a class="hover:bg-base-200 py-2.5">Seguridad y Vigilancia</a></li>
-        <li><a class="hover:bg-base-200 py-2.5">Software y Licencias</a></li>
-        <li><a class="hover:bg-base-200 py-2.5">Artículos de Oficina</a></li>
-        <li><a class="hover:bg-base-200 py-2.5">Home Office Pro</a></li>
-        <li><a class="hover:bg-base-200 py-2.5">Electrodomésticos</a></li>
-      </ul>
-    </aside>
-
-    <!-- Componente Image Carousel con daisyUI -->
-    <image-carousel class="flex-1 w-full"></image-carousel>
-
+  <main class="mx-auto w-full max-w-350 flex-1 px-4 pt-10 pb-6 sm:px-6 sm:pt-12">
+    <router-outlet />
   </main>
+
+  <app-footer />
 
 </div>

@@ -68,3 +68,10 @@ Prettier (`.prettierrc`, with the `angular` parser for `*.html`) — both config
 ## Template
 
 ![alt text](image.png)
+
+
+
+## Current Page State
+
+- Home Page
+![alt text](image-3.png)

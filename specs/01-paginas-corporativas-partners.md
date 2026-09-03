@@ -14,35 +14,44 @@
 - Remoción del buscador, el botón "Acceso a cuenta" y el carrito de compras del header (no hay funcionalidad de e-commerce implementada).
 - Remoción del sidebar de categorías de producto genéricas.
 - Nav superior con 5 items (Inicio, Quienes somos, Nuestros productos, Servicios, Contáctanos) enlazados con `routerLink`, con estado activo vía `routerLinkActive`.
-- Nuevo componente reutilizable `partner-carousel` con 7 badges de texto: Fortinet, Acronis, Google Workspace, Azure, Grandstream, Yealink, Cisco.
+- Nuevo componente reutilizable `partner-carousel` con carrusel de logos reales (imágenes en `src/assets/`, servidas vía `NgOptimizedImage`) de las marcas partner; solo se listan las marcas cuyo archivo de logo ya existe (por ahora, Acronis).
 - Reescritura del contenido de los 5 slides existentes de `ImageCarousel` para reflejar los 5 servicios: instalación física/digital de telefonía, cómputo, redes físicas y virtuales, conmutadores y grabadores, y sistemas de seguridad.
-- Página Inicio: hero (`ImageCarousel` con el contenido reescrito) + `partner-carousel` debajo.
+- Página Inicio: hero (`ImageCarousel` con el contenido reescrito) + `partner-carousel`, en layout responsivo — barra superior (apilado) en pantallas pequeñas, sidebar izquierdo en pantallas grandes (`lg:`).
 - Página Quienes somos: texto genérico/placeholder (misión, quiénes somos) claramente marcado como pendiente de reemplazo por el cliente.
 - Página Nuestros productos: intro breve + `partner-carousel` reutilizado (mismo componente que Inicio, sin duplicar datos).
 - Página Servicios: una sola página con 5 secciones/tarjetas, una por categoría de servicio.
 - Página Contáctanos: información estática (teléfono, correo, dirección, horario) en placeholders, sin formulario funcional.
 - Mantener el tema daisyUI `corporate` ya configurado en `src/styles.css`, sin cambios.
+- Título de documento (`<title>`) y meta description por ruta, vía el campo `title` de `Routes` y el servicio `Meta` de `@angular/platform-browser` en cada componente de página.
+- Accesibilidad de navegación: `aria-label` en el `<nav>` principal y `ariaCurrentWhenActive="page"` en cada link del nav (input nativo de `RouterLinkActive`).
+- Uso de etiquetas HTML semánticas (`header`, `article`, `address`, `ul`/`li`, `span`) en vez de `div` genéricos donde el contenido tiene un rol claro, para mejorar el árbol de accesibilidad/SEO.
+- `public/sitemap.xml` y `public/robots.txt` con dominio `https://infrashieldsys.com`, cubriendo las 5 rutas del sitio.
+- Componente `app-footer` (`src/app/footer/`), minimalista (solo marca + copyright, sin navegación ni datos de contacto duplicados — eso ya vive en Contáctanos y en el nav), persistente en el shell de `App` en las 5 páginas, con patrón "sticky footer" (flexbox: `main` con `flex-1`) para que quede anclado al fondo del viewport cuando el contenido de la página es corto (ej. Inicio).
 
 **Out of scope (for future specs):**
 
 - Subpáginas individuales por servicio (ej. `/servicios/telefonia`).
 - Formulario de contacto funcional (con backend/envío real).
-- Logos reales (SVG/PNG) de las marcas partner — por ahora son badges de texto.
 - Catálogo de líneas de producto (tarjetas de producto) en "Nuestros productos".
 - Funcionalidad de cuenta de usuario o carrito de compras.
 - Internacionalización (i18n) / soporte multi-idioma.
-- SEO por página (meta tags, sitemap).
+- Server-side rendering (SSR) — el `<title>`/meta description por ruta se actualizan client-side, no en el HTML servido inicialmente.
+- Envío del sitemap a Google Search Console (requiere el dominio en producción).
 
 ## Data model
 
 ```ts
 // src/partner-carousel/partner-carousel.ts
-export interface PartnerBadge {
+export interface PartnerLogo {
   id: string;
   name: string;
-  badgeClass: string; // modificador de badge daisyUI, p.ej. 'badge-primary'
+  image: string; // ruta servida desde /assets (src/assets/, ver angular.json)
+  width: number;
+  height: number;
 }
 ```
+
+`src/assets/` se sirve como assets estáticos bajo `/assets` (entrada agregada en `angular.json`, junto a `public/`). Solo se agrega una entrada a `PartnerCarousel.partners` cuando el archivo de logo correspondiente ya existe en `src/assets/`.
 
 `CarouselSlide` (definida en `src/image-carousel/image-carousel.ts`) no cambia de forma — solo cambian los 5 valores de sus campos (`tag`, `title`, `subtitle`, `description`, `ctaText`) para reflejar los nuevos servicios en vez de los productos genéricos actuales.
 
@@ -65,17 +74,19 @@ Convenciones:
 ## Acceptance criteria
 
 - [ ] `pnpm build` termina sin errores.
-- [ ] La ruta `/` muestra el hero carousel (5 slides con el nuevo contenido de servicios) seguido del carrusel de partners.
+- [ ] La ruta `/` muestra el hero carousel (5 slides con el nuevo contenido de servicios) junto con el carrusel de partners, como barra superior en pantallas pequeñas y como sidebar izquierdo en pantallas grandes (`lg:`).
 - [ ] Las rutas `/quienes-somos`, `/nuestros-productos`, `/servicios` y `/contactanos` cargan cada una su propio componente vía `loadComponent`.
 - [ ] El header muestra el texto "Infrashield Systems" y ya no muestra buscador, "Acceso a cuenta" ni carrito.
 - [ ] El nav superior tiene exactamente 5 items (Inicio, Quienes somos, Nuestros productos, Servicios, Contáctanos) y el item de la ruta activa se resalta visualmente.
 - [ ] El sidebar de categorías de producto genéricas ya no aparece en ninguna página.
-- [ ] El carrusel de partners muestra exactamente 7 badges: Fortinet, Acronis, Google Workspace, Azure, Grandstream, Yealink, Cisco.
+- [ ] El carrusel de partners muestra el logo real (imagen) de cada marca cuyo archivo ya existe en `src/assets/`, servido vía `NgOptimizedImage`.
 - [ ] El mismo componente `partner-carousel` se usa tanto en Inicio como en Nuestros productos, sin duplicar el arreglo de datos.
 - [ ] La página Servicios muestra 5 secciones/tarjetas, una por cada categoría de servicio.
 - [ ] La página Contáctanos muestra teléfono, correo, dirección y horario como texto estático, sin `<form>` funcional.
 - [ ] El tema daisyUI sigue siendo `corporate`, sin cambios en `src/styles.css`.
 - [ ] Ninguna página muestra errores en la consola del navegador.
+- [ ] Cada ruta actualiza el `<title>` del documento y su meta description al navegar.
+- [ ] El link del nav correspondiente a la ruta activa tiene `aria-current="page"`.
 
 ## Decisions
 
@@ -83,25 +94,25 @@ Convenciones:
 - **Sí:** Servicios como una sola página con 5 secciones, no subpáginas. Son categorías relacionadas; evita rutas anidadas prematuras.
 - **No:** mantener buscador/cuenta/carrito del header. No hay funcionalidad de compra implementada; dejarlos sería UI muerta.
 - **Sí:** "Nuestros productos" muestra marcas partner en vez del sidebar de categorías genéricas. El sidebar era contenido de e-commerce ajeno al nuevo enfoque de la empresa.
-- **Sí:** badges de texto para el carrusel de partners, sin logos reales todavía. Evita usar assets de marca de terceros sin verificar licencias, y no bloquea el desarrollo esperando los archivos.
+- **Sí:** logos reales de las marcas partner vía `NgOptimizedImage`, mostrando solo las marcas cuyo archivo ya existe en `src/assets/` (decisión revisada — el usuario proveerá los logos incrementalmente).
 - **Sí:** Inicio es una página distinta de "Quienes somos", con "Inicio" como 5to item de nav. Evita mezclar el hero de servicios con la narrativa institucional de la empresa.
 - **Sí:** el carrusel de partners vive solo en Inicio, no duplicado en Quienes somos. Un único lugar de prueba social en la portada.
 - **Sí:** reescribir los 5 slides del `ImageCarousel` existente en vez de crear un componente nuevo. Reutiliza la lógica de autoplay/scroll-snap ya construida y probada.
 - **No:** formulario de contacto funcional. No hay backend; se deja fuera para no prometer una funcionalidad que no envía nada.
 - **No:** cambiar el tema daisyUI `corporate`. Instrucción explícita del usuario de no tocar el tema corporate.
+- **No:** usar `@angular/aria` para accesibilidad general. Ese paquete cubre patrones de widgets interactivos complejos (accordion, listbox, combobox, menu, tabs, tree, grid) que no existen en este sitio; forzar, por ejemplo, roles de `menu` sobre la navegación del sitio es un antipatrón de ARIA. Se usan en su lugar las APIs nativas correctas: `title` en `Routes`, `Meta` de `@angular/platform-browser`, y `ariaCurrentWhenActive` de `RouterLinkActive`.
 
 ## Risks
 
 | Riesgo                                                                          | Mitigación                                                                                                          |
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
 | El contenido placeholder se queda en producción sin reemplazar                   | Marcar claramente en el texto de cada página que es contenido genérico pendiente de reemplazo por el cliente.        |
-| Nombres de marcas partner (Fortinet, Cisco, etc.) mostrados sin acuerdo verificado | Usar solo texto (sin logos) hasta confirmar que existe relación de partnership vigente y permiso de uso de marca.     |
+| Logos de marcas partner mostrados sin acuerdo de partnership verificado | Solo se agrega un logo al carrusel cuando el usuario coloca el archivo en `src/assets/`, confirmando así que existe relación de partnership vigente y permiso de uso de marca. |
 
 ## What is **not** in this spec
 
 - Subpáginas individuales por servicio (`/servicios/telefonia`, etc.).
 - Formulario de contacto funcional con backend.
-- Logos reales de las marcas partner.
 - Catálogo de líneas de producto en "Nuestros productos".
 - Funcionalidad de cuenta de usuario o carrito de compras.
 - Internacionalización / múltiples idiomas.
