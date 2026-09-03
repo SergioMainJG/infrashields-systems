@@ -21,8 +21,8 @@
       "onFail": "download"
     },
     "packageManager":{
-      "name": "nub",
-      "version": "0.7.5",
+      "name": "pnpm",
+      "version": "11.24.0",
       "onFail": "download"
     }
   },
