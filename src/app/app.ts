@@ -1,9 +1,10 @@
 import { Component, signal } from '@angular/core';
-import { ImageCarousel } from '../image-carousel/image-carousel';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { Footer } from './footer/footer';
 
 @Component({
   selector: 'app-root',
-  imports: [ImageCarousel],
+  imports: [RouterOutlet, RouterLink, RouterLinkActive, Footer],
   templateUrl: './app.html',
 })
 export class App {

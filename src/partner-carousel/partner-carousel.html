@@ -1,0 +1,30 @@
+<section
+  class="flex w-full flex-col overflow-hidden rounded-box border border-base-300 bg-base-100 p-4 shadow-sm"
+  aria-label="Marcas con las que tenemos partnership">
+
+  <h2 class="mb-3 text-sm font-semibold uppercase tracking-wide text-base-content/60">
+    Partners tecnológicos
+  </h2>
+
+  <ul class="m-0 flex w-full flex-1 list-none flex-wrap items-center justify-center gap-4 p-0 lg:carousel lg:carousel-vertical">
+    @for (partner of partners; track partner.id) {
+      <li class="carousel-item lg:w-full">
+        @if (partner.image) {
+          <img
+            [ngSrc]="partner.image"
+            [width]="partner.width"
+            [height]="partner.height"
+            [alt]="partner.name"
+            class="h-auto w-full max-w-55 rounded-field object-contain lg:max-w-full" />
+        } @else {
+          <span
+            class="badge badge-outline badge-lg w-full max-w-55 justify-center px-4 py-3 font-semibold text-base-content/60 lg:max-w-full"
+            [attr.aria-label]="partner.name + ' (logo próximamente)'">
+            {{ partner.name }}
+          </span>
+        }
+      </li>
+    }
+  </ul>
+
+</section>
