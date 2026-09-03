@@ -1,5 +1,5 @@
 import { Component, computed, ElementRef, OnDestroy, OnInit, signal, viewChild } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { NgOptimizedImage } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
 export interface CarouselSlide {
@@ -17,7 +17,7 @@ export interface CarouselSlide {
 
 @Component({
   selector: 'image-carousel',
-  imports: [CommonModule, RouterLink],
+  imports: [NgOptimizedImage, RouterLink],
   templateUrl: './image-carousel.html',
 })
 export class ImageCarousel implements OnInit, OnDestroy {

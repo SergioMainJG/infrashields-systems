@@ -1,11 +1,13 @@
 import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { PreloadAllModules, provideRouter, withPreloading } from '@angular/router';
 
 import { routes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
-    provideRouter(routes)
+    // Lazy routes stay off the initial bundle, then preload in the background
+    // once the app is idle so in-app navigation between pages feels instant.
+    provideRouter(routes, withPreloading(PreloadAllModules))
   ]
 };

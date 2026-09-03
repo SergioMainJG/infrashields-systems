@@ -16,12 +16,13 @@
         [id]="slide.id" 
         class="carousel-item relative w-full flex items-center justify-start overflow-hidden">
         
-        <!-- Background Slide Image -->
-        <img 
-          [src]="slide.image" 
+        <!-- Background Slide Image: only the first (LCP) slide loads eagerly with high priority; the rest lazy-load as the user scrolls the carousel -->
+        <img
+          [ngSrc]="slide.image"
           [alt]="slide.alt"
-          class="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-700 hover:scale-105" 
-          loading="eager" />
+          fill
+          [priority]="i === 0"
+          class="object-cover object-center transition-transform duration-700 hover:scale-105" />
 
         <!-- High-Contrast Scrim Gradient for Readability -->
         <div aria-hidden="true" class="absolute inset-0 bg-gradient-to-r from-base-100/95 via-base-100/80 to-transparent sm:w-3/4 lg:w-3/5"></div>
