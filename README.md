@@ -1,26 +1,35 @@
-# InfrashieldSystems
+# Infrashield Systems
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.0.8.
+An Angular 22 storefront (zoneless-style standalone components) styled with Tailwind CSS v4 and
+daisyUI (`corporate` theme). Early-stage build: the current UI is a single e-commerce landing page
+(header/search/cart, nav, category sidebar, image carousel).
+
+## Requirements
+
+- Node.js `>= 24.19.0`
+- pnpm `11.24.0` (see `pnpm-workspace.yaml`)
 
 ## Development server
 
-To start a local development server, run:
-
 ```bash
-ng serve
+pnpm start
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+This runs `nubx ng serve --hmr --live-reload -o --host 0.0.0.0` (falls back to plain `ng serve` if
+`nubx` isn't available). Opens the browser automatically with HMR on, serving the `development`
+configuration at `http://localhost:4200/`.
 
 ## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
 
 ```bash
 ng generate component component-name
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Generated components should skip a `.css` file and use a separate `.html` template (see
+`.vscode/settings.json` schematics defaults), and drop the `.component` suffix from filenames
+(`logo.ts`/`logo.html`, not `logo.component.ts`) to match the rest of the codebase.
+
+For a complete list of available schematics, run:
 
 ```bash
 ng generate --help
@@ -28,32 +37,45 @@ ng generate --help
 
 ## Building
 
-To build the project run:
-
 ```bash
-ng build
+pnpm build
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Runs `ng build` (production configuration) and outputs to `dist/infrashield-systems/browser/`.
+
+For an incremental development build that rebuilds on change:
+
+```bash
+pnpm watch
+```
 
 ## Running unit tests
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
 ```bash
-ng test
+pnpm test
 ```
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
+Runs `ng test`, which uses `@angular/build:unit-test` with **Vitest** (not Karma/Jasmine). To run a
+single spec file:
 
 ```bash
-ng e2e
+ng test -- src/app/app.spec.ts
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## Deployment (Cloudflare Pages)
+
+The site is deployed as a static build to Cloudflare Pages via `wrangler.toml`
+(`pages_build_output_dir = dist/infrashield-systems/browser`):
+
+```bash
+pnpm build
+npx wrangler pages deploy
+```
+
+The first run will prompt you to log in and link/create the Cloudflare Pages project.
 
 ## Additional Resources
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+For more information on using the Angular CLI, including detailed command references, visit the
+[Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page. See `CLAUDE.md`
+for architecture notes and project conventions.
