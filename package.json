@@ -2,11 +2,11 @@
   "name": "infrashield-systems",
   "version": "0.0.0",
   "scripts": {
-    "ng": "pnx ng",
-    "start": "pnx ng serve --hmr --live-reload -o",
-    "build": "pnx ng build",
-    "watch": "pnx ng build --watch --configuration development",
-    "test": "pnx ng test"
+    "ng": "pnpm exec ng",
+    "start": "pnpm exec ng serve --hmr --live-reload -o",
+    "build": "pnpm exec ng build",
+    "watch": "pnpm exec ng build --watch --configuration development",
+    "test": "pnpm exec ng test"
   },
   "private": true,
   "engineStrict": true,
