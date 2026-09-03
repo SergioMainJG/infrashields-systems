@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "nubx ng serve --hmr --live-reload -o",
+    "start": "nubx ng serve --hmr --live-reload -o --host 0.0.0.0",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
@@ -11,12 +11,19 @@
   "private": true,
   "engineStrict": true,
   "engines": {
-    "node": ">= 24.19.0"
+    "node": ">= 24.19.0",
+    "nub": ">=0.7.5"
   },
   "devEngines": {
     "runtime": {
       "name": "node",
-      "version": "24.19.0"
+      "version": "24.19.0",
+      "onFail": "download"
+    },
+    "packageManager":{
+      "name": "nub",
+      "version": "0.7.5",
+      "onFail": "download"
     }
   },
   "dependencies": {
