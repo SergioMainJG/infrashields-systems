@@ -1,81 +1,84 @@
 # Infrashield Systems
 
-An Angular 22 storefront (zoneless-style standalone components) styled with Tailwind CSS v4 and
-daisyUI (`corporate` theme). Early-stage build: the current UI is a single e-commerce landing page
-(header/search/cart, nav, category sidebar, image carousel).
+Sitio corporativo de **Infrashield Systems**, empresa mexicana de infraestructura de TI: telefonía, cómputo, redes, conmutadores y grabadores, y ciberseguridad.
 
-## Requirements
+**En producción:** https://infrashieldsys.com
 
-- Node.js `>= 24.19.0`
-- pnpm `11.24.0` (see `pnpm-workspace.yaml`)
+![Angular](https://img.shields.io/badge/Angular-22-DD0031?logo=angular&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?logo=tailwindcss&logoColor=white)
+![daisyUI](https://img.shields.io/badge/daisyUI-5-5A0EF8?logo=daisyui&logoColor=white)
+![Cloudflare Pages](https://img.shields.io/badge/Cloudflare_Pages-en_producción-F38020?logo=cloudflarepages&logoColor=white)
 
-## Development server
+![Página de inicio de Infrashield Systems](docs/inicio.png)
 
-```bash
-pnpm start
+## Contexto
+
+- **Cliente:** Infrashield Systems (México)
+- **Tipo:** proyecto para cliente, en producción
+- **Mi rol:** desarrollo frontend, SEO técnico y despliegue
+- **Periodo:** agosto – septiembre 2026
+
+El sitio presenta los servicios de la empresa y sus alianzas con fabricantes como Acronis, Kaspersky, Fortinet, Microsoft y Cisco.
+
+## Funcionalidades
+
+- **5 páginas con lazy loading:** Inicio, Quiénes somos, Nuestros productos, Servicios y Contáctanos.
+- **Precarga en segundo plano** (`PreloadAllModules`): cada ruta se carga bajo demanda y después se precarga cuando la app está inactiva, así la navegación entre páginas es inmediata.
+- **Carrusel de servicios propio, sin librerías:** estado con signals, autoplay que se pausa al pasar el mouse, navegación con scroll-snap y atributos ARIA para lectores de pantalla.
+- **Carrusel de partners** con `NgOptimizedImage`. Si una marca todavía no tiene logo, se muestra como texto.
+- **SEO técnico:** título por ruta, meta description, `sitemap.xml` y `robots.txt`.
+
+## Stack
+
+| Área      | Tecnología                                                                                   |
+| --------- | -------------------------------------------------------------------------------------------- |
+| Framework | Angular 22: componentes standalone (sin NgModules) y signals                                 |
+| Estilos   | Tailwind CSS v4 + daisyUI 5, con el tema `corporate` personalizado                           |
+| Lenguaje  | TypeScript 6 con checks adicionales (`noImplicitReturns`, `noImplicitOverride`, entre otros) |
+| Formato   | oxfmt + Prettier                                                                             |
+| Hosting   | Cloudflare Pages                                                                             |
+| Paquetes  | pnpm                                                                                         |
+
+## Estructura
+
+```
+src/
+├── app/
+│   ├── pages/            # Una carpeta por ruta, cargadas con lazy loading
+│   ├── navbar-menu/
+│   ├── footer/
+│   ├── logo/
+│   ├── app.routes.ts     # Rutas y títulos por página
+│   └── app.config.ts     # Router con precarga
+├── image-carousel/       # Carrusel de servicios
+├── partner-carousel/     # Logos de partners
+└── styles.css            # Tailwind + tema de daisyUI
+public/                   # favicon, logo, robots.txt, sitemap.xml
 ```
 
-This runs `nubx ng serve --hmr --live-reload -o --host 0.0.0.0` (falls back to plain `ng serve` if
-`nubx` isn't available). Opens the browser automatically with HMR on, serving the `development`
-configuration at `http://localhost:4200/`.
+## Desarrollo local
 
-## Code scaffolding
+Requisitos: Node.js 24.19 o superior y pnpm 11.24.
 
 ```bash
-ng generate component component-name
+pnpm install
+pnpm start    # http://localhost:4200
+pnpm build    # genera dist/infrashield-systems/browser/
 ```
 
-Generated components should skip a `.css` file and use a separate `.html` template (see
-`.vscode/settings.json` schematics defaults), and drop the `.component` suffix from filenames
-(`logo.ts`/`logo.html`, not `logo.component.ts`) to match the rest of the codebase.
+## Despliegue
 
-For a complete list of available schematics, run:
-
-```bash
-ng generate --help
-```
-
-## Building
+Build estático en Cloudflare Pages. La configuración está en `wrangler.toml`.
 
 ```bash
 pnpm build
+pnpm dlx wrangler pages deploy
 ```
 
-Runs `ng build` (production configuration) and outputs to `dist/infrashield-systems/browser/`.
+## Créditos
 
-For an incremental development build that rebuilds on change:
+Desarrollado por [Sergio Arce](https://github.com/SergioMainJG).
 
-```bash
-pnpm watch
-```
+La marca, los textos y el logotipo son propiedad de Infrashield Systems. Los logos de Acronis, Kaspersky y las demás marcas pertenecen a sus respectivos dueños. Las fotografías provienen de [Unsplash](https://unsplash.com).
 
-## Running unit tests
-
-```bash
-pnpm test
-```
-
-Runs `ng test`, which uses `@angular/build:unit-test` with **Vitest** (not Karma/Jasmine). To run a
-single spec file:
-
-```bash
-ng test -- src/app/app.spec.ts
-```
-
-## Deployment (Cloudflare Pages)
-
-The site is deployed as a static build to Cloudflare Pages via `wrangler.toml`
-(`pages_build_output_dir = dist/infrashield-systems/browser`):
-
-```bash
-pnpm build
-npx wrangler pages deploy
-```
-
-The first run will prompt you to log in and link/create the Cloudflare Pages project.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the
-[Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page. See `CLAUDE.md`
-for architecture notes and project conventions.
+El código se publica como muestra de portafolio con autorización del cliente y no incluye licencia de uso.
